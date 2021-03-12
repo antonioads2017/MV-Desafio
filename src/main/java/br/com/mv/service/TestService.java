@@ -1,15 +1,10 @@
 package br.com.mv.service;
 
 import antlr.collections.impl.LList;
-import br.com.mv.model.Conta;
-import br.com.mv.model.Endereco;
-import br.com.mv.model.Pessoa;
-import br.com.mv.model.PessoaFisica;
+import br.com.mv.model.*;
+import br.com.mv.model.enums.TIpoMovimentacao;
 import br.com.mv.model.enums.TipoPessoa;
-import br.com.mv.repository.ContaRepository;
-import br.com.mv.repository.EnderecoRepository;
-import br.com.mv.repository.PessoaFisicaRepository;
-import br.com.mv.repository.PessoaRepository;
+import br.com.mv.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +28,9 @@ public class TestService {
 
     @Autowired
     private PessoaFisicaRepository pessoaFisicaRepository;
+
+    @Autowired
+    private MovimentacaoRepository movimentacaoRepository;
 
     public void createClientX(){
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -79,6 +77,29 @@ public class TestService {
 
         contaRepository.save(conta1);
 
+        Movimentacao movimentacao = new Movimentacao();
+        movimentacao.setDataMovimentacao(new Date(System.currentTimeMillis()));
+        movimentacao.setTipo(TIpoMovimentacao.CREDITO);
+        movimentacao.setValor(conta1.getSaldoAtual());
+        movimentacao.setConta(conta1);
+
+        Long numMovimentacoes = movimentacaoRepository.totalMovimentacion(movimentacao.getConta().getNumero());
+        if(numMovimentacoes<=10){
+            movimentacao.setTaxa(1.0F);
+        }else if (numMovimentacoes<=20&&numMovimentacoes>10){
+            movimentacao.setTaxa(0.75F);
+        }else {
+            movimentacao.setTaxa(1.0F);
+        }
+
+        //Como aqui é o primeiro movimento da conta, so desconta a taxa
+        if(movimentacao.getTipo()== TIpoMovimentacao.CREDITO){
+            conta1.setSaldoAtual((conta1.getSaldoAtual()-movimentacao.getTaxa()));
+        }else{
+            conta1.setSaldoAtual((conta1.getSaldoAtual()-movimentacao.getValor())-movimentacao.getTaxa());
+        }
+        movimentacaoRepository.save(movimentacao);
+        contaRepository.save(conta1);
     }
 
 }

@@ -19,7 +19,7 @@ public class Movimentacao {
     private Integer protocolo;
     @Column(nullable = false)
     private Date dataMovimentacao;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private TIpoMovimentacao tipo;
     @Column(nullable = false)
     private Float valor;
