@@ -23,6 +23,8 @@ public class Movimentacao {
     private TIpoMovimentacao tipo;
     @Column(nullable = false)
     private Float valor;
+    @Column(nullable = false)
+    private Float taxa;
 
     @ManyToOne
     @JoinColumn(name = "conta_numero")

@@ -8,9 +8,11 @@ import br.com.mv.repository.ContaRepository;
 import br.com.mv.repository.PessoaJuridicaRepository;
 import br.com.mv.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+@Service
 public class PessoaJuridicaService {
 
 

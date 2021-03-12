@@ -1,6 +1,6 @@
 package br.com.mv.model;
 
-import br.com.mv.model.enums.TipoCliente;
+import br.com.mv.model.enums.TipoPessoa;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,8 +20,8 @@ public class Pessoa implements Serializable {
     @GeneratedValue
     private int id;
     private String nome;
-    @Enumerated
-    private TipoCliente tipo;
+    @Enumerated(EnumType.STRING)
+    private TipoPessoa tipo;
     @Column(nullable = false)
     private Date dataCadastro;
     @Column(nullable = true)

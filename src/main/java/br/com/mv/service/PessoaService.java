@@ -1,13 +1,22 @@
 package br.com.mv.service;
 
 import br.com.mv.exception.ResourceNotFoundException;
+import br.com.mv.model.Conta;
+import br.com.mv.model.Endereco;
 import br.com.mv.model.Pessoa;
+import br.com.mv.model.PessoaFisica;
+import br.com.mv.model.enums.TipoPessoa;
 import br.com.mv.repository.PessoaRepository;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class PessoaService {
 
     @Autowired
@@ -45,6 +54,7 @@ public class PessoaService {
             throw new ResourceNotFoundException("Pessoa nao encontrado para editar");
         }
     }
+
 
 
 
