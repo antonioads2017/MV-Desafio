@@ -3,15 +3,21 @@ package br.com.mv.model;
 import lombok.*;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Embeddable
+@Entity
 public class Endereco {
 
+    @Id
+    @GeneratedValue
+    private int id;
     private String CEP;
     private String rua;
     private int numero;

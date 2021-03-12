@@ -30,8 +30,8 @@ public abstract class Cliente implements Serializable {
     @Column(unique = true)
     private String email;
     private String contato;
-    @Embedded
-    private Endereco endereco;
+    @OneToMany
+    private List<Endereco> enderecos;
 
     @OneToMany
     private List<Conta> contas;

@@ -15,7 +15,8 @@ import java.util.Date;
 public class Movimentacao {
 
     @Id
-    private String protocolo;
+    @GeneratedValue
+    private Integer protocolo;
     @Column(nullable = false)
     private Date dataMovimentacao;
     @Enumerated
