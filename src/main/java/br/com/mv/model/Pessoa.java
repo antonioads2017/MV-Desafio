@@ -14,8 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Cliente implements Serializable {
+public class Pessoa implements Serializable {
 
     @Id
     @GeneratedValue
@@ -32,6 +31,12 @@ public abstract class Cliente implements Serializable {
     private String contato;
     @OneToMany(mappedBy = "cliente")
     private List<Endereco> enderecos;
+
+    @OneToOne(mappedBy = "pessoa")
+    private PessoaFisica pessoaFisica;
+
+    @OneToOne(mappedBy = "pessoa")
+    private PessoaJuridica pessoaJuridica;
 
     @OneToMany(mappedBy = "cliente")
     private List<Conta> contas;

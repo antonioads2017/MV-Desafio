@@ -2,8 +2,8 @@ package br.com.mv.model;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.util.List;
 
 
 @Getter
@@ -12,14 +12,21 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @Data
 @Entity
-public class ClienteJuridica extends Cliente {
+public class PessoaJuridica  {
 
-    @Column(unique = true)
+    @Id
     private String cnpj;
     @Column(nullable = false)
     private String nomeFantasia;
     @Column(nullable = false)
     private String nomeEmpresarial;
+
+    @OneToOne
+    @JoinColumn(name = "pessoa_id")
+    private Pessoa pessoa;
+
+    @OneToMany
+    private List<Pessoa> clientes;
 
 
 

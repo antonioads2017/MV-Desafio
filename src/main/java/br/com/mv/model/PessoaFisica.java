@@ -2,8 +2,7 @@ package br.com.mv.model;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Date;
 
 
@@ -13,12 +12,18 @@ import java.util.Date;
 @NoArgsConstructor
 @Data
 @Entity
-public class ClienteFisica extends Cliente {
+public class PessoaFisica {
 
-    @Column(unique = true)
+    @Id
     private String cpf;
     @Column(unique = true)
     private Date dNascimento;
+
+    @OneToOne
+    @JoinColumn(name = "pessoa_id")
+    private Pessoa pessoa;
+
+
 
 
 }

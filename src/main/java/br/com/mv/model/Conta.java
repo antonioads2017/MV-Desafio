@@ -14,8 +14,6 @@ import java.util.List;
 @Entity
 public class Conta {
 
-    @Column(nullable = false)
-    private String agencia;
     @Id
     private String numero;
     @Column(nullable = false)
@@ -27,7 +25,7 @@ public class Conta {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
+    private Pessoa cliente;
 
     @OneToMany(mappedBy = "conta")
     private List<Movimentacao> movimentacoes;
