@@ -30,10 +30,10 @@ public abstract class Cliente implements Serializable {
     @Column(unique = true)
     private String email;
     private String contato;
-    @OneToMany
+    @OneToMany(mappedBy = "cliente")
     private List<Endereco> enderecos;
 
-    @OneToMany
+    @OneToMany(mappedBy = "cliente")
     private List<Conta> contas;
 
 }

@@ -2,10 +2,7 @@ package br.com.mv.model;
 
 import lombok.*;
 
-import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -25,5 +22,9 @@ public class Endereco {
     private String bairro;
     private String cidade;
     private String estado;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
 }

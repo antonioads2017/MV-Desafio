@@ -25,7 +25,11 @@ public class Conta {
     @Column(nullable = false)
     private Float saldoAtual;
 
-    @OneToMany
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+
+    @OneToMany(mappedBy = "conta")
     private List<Movimentacao> movimentacoes;
 
 

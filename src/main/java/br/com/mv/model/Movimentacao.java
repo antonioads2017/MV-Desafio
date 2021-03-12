@@ -24,6 +24,10 @@ public class Movimentacao {
     @Column(nullable = false)
     private Float valor;
 
+    @ManyToOne
+    @JoinColumn(name = "conta_numero")
+    private Conta conta;
+
 
 
 

@@ -40,17 +40,6 @@ public class MovimentacaoService {
             repository.save(Movimentacao);
         }
     }
-    public void update (Movimentacao Movimentacao){
-        if(repository.findById(Movimentacao.getProtocolo())!=null){
-            repository.save(Movimentacao);
-        }else{
-            throw new ResourceNotFoundException("Movimentacao com protocolo "+Movimentacao.getProtocolo()+"nao encontrado para editar");
-        }
-    }
-
-
-
-
 
 
 
