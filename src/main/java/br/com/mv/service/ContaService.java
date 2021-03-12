@@ -48,6 +48,10 @@ public class ContaService {
         }
     }
 
+    public List<Conta> accountPerClient (int id){
+        return repository.accountsPerClient(id);
+    }
+
 
 
 

@@ -19,9 +19,11 @@ public class PessoaController {
     @Autowired
     private PessoaService pessoaService;
 
-    @GetMapping("/criarX")
-    public ResponseEntity<Object> createClienteX (){
+    @GetMapping("/createPeoples")
+    public ResponseEntity<Object> createPeoples (){
         testService.createClientX();
+        testService.createClientY();
+        testService.createCompany();
         return ResponseEntity.ok().build();
     }
 
