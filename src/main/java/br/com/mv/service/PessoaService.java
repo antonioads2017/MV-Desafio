@@ -31,10 +31,10 @@ public class PessoaService {
     private MovimentacaoRepository movimentacaoRepository;
 
     public Pessoa getPessoa (int id){
-        Pessoa Pessoa = repository.findById(id).get();
+        Pessoa pessoa = repository.findById(id).get();
 
-        if(Pessoa!=null){
-            return Pessoa;
+        if(pessoa!=null){
+            return pessoa;
         }else{
             throw new ResourceNotFoundException("Pessoa nao encontrado");
         }

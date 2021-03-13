@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +18,6 @@ import java.util.List;
 public class Pessoa implements Serializable {
 
     @Id
-    @GeneratedValue
     private int id;
     private String nome;
     @Enumerated(EnumType.STRING)

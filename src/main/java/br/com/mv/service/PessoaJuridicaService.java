@@ -25,6 +25,9 @@ public class PessoaJuridicaService {
     @Autowired
     private PessoaRepository pessoaRepository;
 
+    @Autowired
+    private ContaRepository contaRepository;
+
     public PessoaJuridica getPessoaJuridica (String cnpj){
         PessoaJuridica pessoaJuridica = pessoaJuridicaRepository.findById(cnpj).get();
         if(pessoaJuridica!=null){
@@ -35,10 +38,10 @@ public class PessoaJuridicaService {
     }
 
 
-    public void registerClient(String cpfOrcnpj, String cnpjEmpresa) {
+    public void registerClient(int id, String cnpjEmpresa) {
         PessoaJuridica empresa = pessoaJuridicaRepository.findById(cnpjEmpresa).get();
         List<Pessoa> clients = pessoaJuridicaRepository.findClients(cnpjEmpresa);
-        Pessoa client = pessoaRepository.getPerCPFOrCNPJ(cpfOrcnpj);
+        Pessoa client = pessoaRepository.findById(id).get();
         if(!clients.contains(client)){
             clients.add(client);
             empresa.setClientes(clients);
@@ -49,6 +52,19 @@ public class PessoaJuridicaService {
     public List<Pessoa> listarClientes (String cnpj){
         List<Pessoa> clients = pessoaJuridicaRepository.findClients(cnpj);
         return clients;
+    }
+
+    public String reportlistClientsPerCompany (String cnpj){
+        String report = "Relatorio de Saldos dos Clientes: \n";
+        List<Pessoa> clients = pessoaJuridicaRepository.findClients(cnpj);
+        for (Pessoa client: clients){
+            report+="Cliente "+client.getNome()+" desde "+client.getDataCadastro();
+            List<Conta> contas = contaRepository.accountsPerClient(client.getId());
+            for (Conta conta: contas){
+                report+= "Conta "+conta.getNumero()+" com Saldo em "+new Date(System.currentTimeMillis())+" de: "+conta.getSaldoAtual()+"\n";
+            }
+        }
+        return report;
     }
 
 

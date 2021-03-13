@@ -30,7 +30,6 @@ public class TestService {
     @Autowired
     private PessoaFisicaRepository pessoaFisicaRepository;
 
-
     @Autowired
     private PessoaJuridicaRepository pessoaJuridicaRepository;
 
@@ -42,6 +41,7 @@ public class TestService {
 
 
         Pessoa pessoa = new Pessoa();
+        pessoa.setId(10);
         pessoa.setNome("X");
         pessoa.setTipo(TipoPessoa.FISICA);
         pessoa.setDataCadastro(new Date(System.currentTimeMillis()));
@@ -112,6 +112,7 @@ public class TestService {
 
 
         Pessoa pessoa = new Pessoa();
+        pessoa.setId(20);
         pessoa.setNome("Y");
         pessoa.setTipo(TipoPessoa.FISICA);
         pessoa.setDataCadastro(new Date(System.currentTimeMillis()));
@@ -183,6 +184,7 @@ public class TestService {
 
 
         Pessoa pessoa = new Pessoa();
+        pessoa.setId(30);
         pessoa.setNome("XPTO");
         pessoa.setTipo(TipoPessoa.JURIDICA);
         pessoa.setDataCadastro(new Date(System.currentTimeMillis()));
@@ -204,7 +206,7 @@ public class TestService {
         enderecoRepository.save(endereco1);
 
         PessoaJuridica pessoaJuridica = new PessoaJuridica();
-        pessoaJuridica.setCnpj("01.321.303/0001-79");
+        pessoaJuridica.setCnpj("01321303000179");
         pessoaJuridica.setNomeFantasia("Xpress Solutions");
         pessoaJuridica.setNomeEmpresarial("MV Company");
         pessoaJuridica.setPessoa(pessoa);
