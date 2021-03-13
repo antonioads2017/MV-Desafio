@@ -28,12 +28,13 @@ Utilizei praticas de quando eu paguei a cadeira de Aplicações para Web e Desen
 
 * Criar banco no Posgresql de acordo com application.properties dentro de resources
 * Abrir projeto na IDE e execuat MvDesafioApplication;
-* Executar o path v1/pessoa/createPeoples para alimentar o banco com tres entidades de pessoa;
-* Executar o path v1/juridic/empresa/{cnpj}/rCLients para registrar dois clientes numa empresa;
+* Executar o path POST v1/pessoa/createPeoples para alimentar o banco com tres entidades de pessoa;
+* Executar o path POST v1/juridic/empresa/{cnpj}/rCLients para registrar dois clientes numa empresa;
+* Executar o path POST v1/juridic/{cnpj}/rClients e na opcao param, key: client_id e value: id do cliente para cadastro na empresa.
 
 ### Com isso o banco ta alimentado para gerar os dois relatorios principais:
 
-#### Relatorio de Saldo de um Cliente - v1/pessoa/cliente/cbr/{id} onde id é a chave do cliente, sera exibido assim:
+#### Relatorio de Saldo de um Cliente - GET v1/pessoa/cliente/cbr/{id} onde id é a chave do cliente, sera exibido assim:
 
 Relatorio de Saldo do Cliente X
 Cliente desde 2021-03-12 21:16:43.025
@@ -45,7 +46,7 @@ Valor pago pelas movimentacoes: 1
 Saldo Inicial:2000.0
 Saldo Atual: 1999.0
 
-#### Relatorio de Todos os clientes de uma empresa - v1/juridic/rlc/{cnpj}, sera exibido assim:
+#### Relatorio de Todos os clientes de uma empresa -GET v1/juridic/rlc/{cnpj}, sera exibido assim:
 
 Relatorio de Saldos dos Clientes: 
 Cliente X desde 2021-03-12 21:16:43.025Conta 22093-0 com Saldo em Fri Mar 12 21:45:03 BRT 2021 de: 1999.0
